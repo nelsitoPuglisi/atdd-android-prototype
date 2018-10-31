@@ -4,7 +4,7 @@ interface BillingFormRepository {
     fun load(callback: BillingFormCallback)
 
     interface BillingFormCallback {
-        fun onSuccess(form: BillingForm)
+        fun onSuccess(billingFormDto: BillingFormDto)
         fun onError(error: Exception)
     }
 }
