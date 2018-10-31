@@ -17,13 +17,13 @@ class FormAcceptanceTest {
     @Test
     fun `a user wants to load a form`() {
         val formView = BillingFormViewStub()
-        val formRepository = BillingFormRepositoryMock(BillingFormDto())
+        val formRepository = BillingFormRepositoryMock()
         BillingFormLoadingViewState(formRepository).load(formView)
 
         val expected = "{" +
-                "\"fields\":[]" +
-                "\"progress\":\"visible\"" +
-                "\"error_message\":\"\"" +
+                "\"docTypeOptions\":[]," +
+                "\"progress\":\"visible\"," +
+                "\"errorMessage\":\"\"" +
                 "}"
 
         assertEquals(expected, formView.toString())
@@ -32,26 +32,18 @@ class FormAcceptanceTest {
     @Test
     fun `a form is loaded`() {
         val formView = BillingFormViewStub()
-        val formRepository = BillingFormRepositoryMock(BillingFormDto())
+        val formRepository = BillingFormRepositoryMock()
         BillingFormLoadingViewState(formRepository).load(formView)
 
         formRepository.onSuccess()
 
         val expected = "{" +
-                "\"fields\":[" +
-                    "{" +
-                        "\"name\":\"doc_type\"," +
-                        "\"options\":[\"person\",\"company\"]" +
-                    "}," +
-                    "{" +
-                        "\"name\":\"doc_number\"" +
-                        "\"validation\":\"*\"" +
-                    "}]" +
-                "\"progress\":\"gone\"" +
-                "\"error_message\":\"\"" +
+                "\"docTypeOptions\":[\"person\",\"company\"]," +
+                "\"progress\":\"gone\"," +
+                "\"errorMessage\":\"\"" +
                 "}"
 
-        assert(formView.toString() == expected)
+        assertEquals(expected, formView.toString())
     }
 
     @Test @Ignore

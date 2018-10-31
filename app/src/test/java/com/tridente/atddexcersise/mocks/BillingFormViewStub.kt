@@ -4,10 +4,13 @@ import com.google.gson.GsonBuilder
 import com.tridente.atddexcersise.BillingFormView
 
 class BillingFormViewStub : BillingFormView {
+    override fun showDocType(docTypeOptions: List<String>) {
+        this.docTypeOptions = docTypeOptions
+    }
 
-    val fields = listOf<String>()
-    var progress: String = "gone"
-    var errorMessage: String = ""
+    var docTypeOptions = listOf<String>()
+    var progress = "gone"
+    var errorMessage = ""
 
     override fun hideProgress() {
         progress = "gone"
