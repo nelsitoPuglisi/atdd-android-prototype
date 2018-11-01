@@ -20,30 +20,21 @@ class FormAcceptanceTest {
         val formRepository = BillingFormRepositoryMock()
         BillingFormLoadingViewState(formRepository).load(formView)
 
-        val expected = "{" +
-                "\"docTypeOptions\":[]," +
-                "\"progress\":\"visible\"," +
-                "\"errorMessage\":\"\"" +
-                "}"
+        val expected = BillingFormViewStub(VisibleProgress(), DocTypeCombo(emptyList()), NoError())
 
-        assertEquals(expected, formView.toString())
+        assertEquals(expected, formView)
     }
 
     @Test
     fun `a form is loaded`() {
-        val formView = BillingFormViewStub()
+        val formView = BillingFormViewStub(NoProgress(), DocTypeCombo(listOf("person", "company")), NoError())
         val formRepository = BillingFormRepositoryMock()
         BillingFormLoadingViewState(formRepository).load(formView)
-
         formRepository.onSuccess()
 
-        val expected = "{" +
-                "\"docTypeOptions\":[\"person\",\"company\"]," +
-                "\"progress\":\"gone\"," +
-                "\"errorMessage\":\"\"" +
-                "}"
+        val expected = BillingFormViewStub(NoProgress(), DocTypeCombo(listOf("person", "company")), NoError())
 
-        assertEquals(expected, formView.toString())
+        assertEquals(expected, formView)
     }
 
     @Test @Ignore
@@ -52,3 +43,32 @@ class FormAcceptanceTest {
 
     }
 }
+
+class NoError {
+    override fun equals(other: Any?): Boolean {
+        return other is NoError
+    }
+}
+
+class DocTypeCombo(private var docTypeOptions: List<String>) {
+    override fun equals(other: Any?): Boolean {
+        if (other is DocTypeCombo) {
+            return this.docTypeOptions.toTypedArray().contentDeepEquals(other.docTypeOptions.toTypedArray())
+        }
+        return false
+    }
+}
+
+class NoProgress : Progress {
+    override fun equals(other: Any?): Boolean {
+        return other is NoProgress
+    }
+}
+
+class VisibleProgress : Progress {
+    override fun equals(other: Any?): Boolean {
+        return other is VisibleProgress
+    }
+}
+
+interface Progress

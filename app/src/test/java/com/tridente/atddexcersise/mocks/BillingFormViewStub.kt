@@ -1,26 +1,25 @@
 package com.tridente.atddexcersise.mocks
 
-import com.google.gson.GsonBuilder
-import com.tridente.atddexcersise.BillingFormView
+import com.tridente.atddexcersise.*
 
-class BillingFormViewStub : BillingFormView {
+class BillingFormViewStub(private var progress: Progress = NoProgress(), private var docTypeCombo: DocTypeCombo = DocTypeCombo(emptyList()), private var error: NoError = NoError()) : BillingFormView {
     override fun showDocType(docTypeOptions: List<String>) {
-        this.docTypeOptions = docTypeOptions
+        docTypeCombo = DocTypeCombo(docTypeOptions)
     }
 
-    var docTypeOptions = listOf<String>()
-    var progress = "gone"
-    var errorMessage = ""
-
     override fun hideProgress() {
-        progress = "gone"
+        progress = NoProgress()
     }
 
     override fun showProgress() {
-        progress = "visible"
+        progress = VisibleProgress()
     }
 
-    override fun toString(): String {
-        return GsonBuilder().create().toJson(this)
+    override fun equals(other: Any?): Boolean {
+        if (other !is BillingFormViewStub) return false
+
+        return other.docTypeCombo == this.docTypeCombo &&
+                other.error == this.error &&
+                other.progress == this.progress
     }
 }

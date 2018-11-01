@@ -4,7 +4,7 @@ import com.tridente.atddexcersise.BillingFormDto
 import com.tridente.atddexcersise.BillingFormLoadedViewState
 import com.tridente.atddexcersise.BillingFormRepository
 
-class BillingFormRepositoryMock() : BillingFormRepository {
+class BillingFormRepositoryMock : BillingFormRepository {
 
     private lateinit var callback: BillingFormRepository.BillingFormCallback
 
