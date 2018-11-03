@@ -2,10 +2,10 @@ package com.tridente.atddexcersise
 
 import com.tridente.atddexcersise.mocks.BillingFormRepositoryMock
 import com.tridente.atddexcersise.mocks.BillingFormViewStub
-import junit.framework.Assert.assertEquals
 import org.junit.Test
 
 import org.junit.Ignore
+import kotlin.test.assertEquals
 
 /**
  * Example local unit test, which will execute on the development machine (host).
