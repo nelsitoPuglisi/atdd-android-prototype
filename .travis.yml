@@ -13,9 +13,11 @@ android:
     - extra-android-m2repository
 
 script:
-        - ./gradlew build
+    - ./gradlew build jacocoTestReport
 before_install:
-        - chmod +x gradlew
+    - chmod +x gradlew
 branches:
-        only:
-                - master
+  only:
+    - master
+after_success:
+  — bash <(curl -s https://codecov.io/bash)
