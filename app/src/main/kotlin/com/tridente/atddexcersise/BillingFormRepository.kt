@@ -5,6 +5,5 @@ interface BillingFormRepository {
 
     interface BillingFormCallback {
         fun onSuccess(billingFormLoadedViewState: BillingFormLoadedViewState)
-        fun onError(error: Exception)
     }
 }
