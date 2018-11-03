@@ -1,3 +1,3 @@
 # atdd-android-prototype
 
-![Travis-ci](https://api.travis-ci.org/youruser/yourproject.svg)
+![Travis-ci](https://api.travis-ci.org/nelsitoPuglisi/atdd-android-prototype)
