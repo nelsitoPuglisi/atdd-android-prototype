@@ -2,7 +2,10 @@ package com.tridente.atddexcersise.mocks
 
 import com.tridente.atddexcersise.*
 
-class BillingFormViewStub(private var progress: Progress = NoProgress(), private var docTypeCombo: DocTypeCombo = DocTypeCombo(emptyList()), private var error: NoError = NoError()) : BillingFormView {
+class BillingFormViewStub(private var progress: Progress = NoProgress(),
+                          private var docTypeCombo: DocTypeCombo = DocTypeCombo(emptyList()),
+                          private var error: NoError = NoError()) : BillingFormView {
+
     override fun showDocType(docTypeOptions: List<String>) {
         docTypeCombo = DocTypeCombo(docTypeOptions)
     }

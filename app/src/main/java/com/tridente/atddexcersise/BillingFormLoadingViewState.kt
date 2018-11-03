@@ -5,7 +5,7 @@ class BillingFormLoadingViewState(private val formRepository: BillingFormReposit
         formView.showProgress()
         formRepository.load(object : BillingFormRepository.BillingFormCallback {
             override fun onSuccess(billingFormLoadedViewState: BillingFormLoadedViewState) {
-                billingFormLoadedViewState.render(formView)
+                formView.render(billingFormLoadedViewState)
             }
 
             override fun onError(error: Exception) {
